@@ -14,12 +14,11 @@
 
 <!-- Descripción y Características -->
 ## Descripción
-La **Calculadora Web** es una herramienta en línea que te permite realizar cálculos matemáticos básicos de manera eficiente. Su interfaz intuitiva y funciones avanzadas la convierten en una calculadora versátil.
+La **Calculadora Web** es una herramienta en línea que te permite realizar cálculos matemáticos básicos de manera eficiente. Su interfaz intuitiva la hace una  calculadora versátil.
 
 ## Características Destacadas
 - **Operaciones Básicas:** Suma, resta, multiplicación y división.
 - **Entrada de Teclado:** Usa el teclado para ingresar números y operadores.
-- **Función de Retroceso:** Corrige errores fácilmente.
 - **Límite de Dígitos:** Evita desbordamientos de pantalla.
 
 <!-- Captura de Pantalla -->
