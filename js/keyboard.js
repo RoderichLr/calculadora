@@ -1,14 +1,15 @@
 class Calculator {
   constructor() {
-    this.current = document.getElementById("current");
-    this.previous = document.getElementById("previous");
-    this.buttons = Array.from(document.getElementsByTagName("button"));
-    this.endElementFocus = null;
-    this.keyDown = false;
-    this.lastCharIsOperator = false;
-    this.backspaceInterval = null;
-    this.valorOperacion = "0";
-    this.maxDigits = 16;
+    // Inicialización de propiedades y eventos
+    this.current = document.getElementById("current"); // Pantalla de entrada actual
+    this.previous = document.getElementById("previous"); // Pantalla de resultados previos
+    this.buttons = Array.from(document.getElementsByTagName("button")); // Lista de botones
+    this.endElementFocus = null; // Elemento HTML con foco
+    this.keyDown = false; // Indica si se mantiene presionada una tecla
+    this.lastCharIsOperator = false; // Indica si el último carácter ingresado es un operador
+    this.backspaceInterval = null; // Intervalo para manejar el retroceso continuo
+    this.valorOperacion = "0"; // Valor de la operación actual
+    this.maxDigits = 16; // Máximo número de dígitos permitidos
     this.operatorClasses = {
       "Delete": "buttonOperatorC",
       "Backspace": "buttonOperatorB",
@@ -16,8 +17,9 @@ class Calculator {
       "*": "buttonOperatorM",
       "-": "buttonOperatorS",
       "+": "buttonOperatorA",
-    };
+    }; // Clases CSS para los botones de operadores
 
+    // Eventos de escucha
     document.addEventListener("focusin", this.endFocus.bind(this));
     document.addEventListener("keydown", this.handleKeyDown.bind(this));
     document.addEventListener("keyup", this.handleKeyUp.bind(this));
@@ -26,10 +28,12 @@ class Calculator {
     document.addEventListener("mouseup", this.handleMouseUp.bind(this));
   }
 
+  // Manejo del enfoque en elementos HTML
   endFocus(event) {
     this.endElementFocus = event.target;
   }
 
+  // Manejo de clics de mouse en botones
   handleMouseDown(event) {
     const target = event.target;
 
@@ -41,6 +45,7 @@ class Calculator {
     }
   }
 
+  // Manejo de liberación de mouse después de hacer clic en un botón
   handleMouseUp(event) {
     const target = event.target;
     if (target) {
@@ -51,6 +56,7 @@ class Calculator {
     }
   }
 
+  // Manejo de pulsaciones de teclas
   handleKeyDown(event) {
     const key = event.key;
     this.endElementFocus.blur();
@@ -66,6 +72,7 @@ class Calculator {
     }
   }
 
+  // Manejo de liberación de teclas
   handleKeyUp(event) {
     const key = event.key;
     const button = this.buttons.find((b) => b.value === key);
@@ -75,6 +82,7 @@ class Calculator {
       button.classList.remove(this.operatorClasses[button.value]);
 
       if (this.operatorClasses[button.value]) {
+        // Realiza alguna acción específica para operadores
       }
 
       this.keyDown = false;
@@ -85,6 +93,7 @@ class Calculator {
     }
   }
 
+  // Manejo de acciones según el botón presionado
   handleAction(valueBoard) {
     const buttonValue = valueBoard.value;
 
@@ -104,6 +113,7 @@ class Calculator {
     }
   }
 
+  // Manejo del retroceso (backspace)
   handleBackspace() {
     if (this.keyDown || this.mouseDown) {
       this.backspaceInterval = setInterval(() => {
@@ -118,6 +128,7 @@ class Calculator {
     }
   }
 
+  // Manejo de entrada de números y operadores
   handleDefault(value) {
     if (!isNaN(value) || !this.lastCharIsOperator) {
       if (this.current.innerHTML === "0") {
@@ -126,7 +137,7 @@ class Calculator {
         if (this.current.innerHTML.length < this.maxDigits) {
           this.current.innerHTML += value;
         } else {
-          this.previous.innerHTML = "Solo 16 digitos";
+          this.previous.innerHTML = "Solo 16 dígitos";
           this.previous.style.fontSize = "25px";
         }
       }
@@ -135,6 +146,7 @@ class Calculator {
     }
   }
 
+  // Evaluación de la expresión matemática
   evaluateExpression() {
     try {
       const currentValue = eval(this.current.innerHTML);
@@ -151,6 +163,7 @@ class Calculator {
     }
   }
 
+  // Borrar la calculadora
   clearCalculator() {
     this.current.innerHTML = "0";
     this.previous.innerHTML = "";
