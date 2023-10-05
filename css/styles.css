@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+  background-color: rgb(127, 135, 202);
+  font-family:Arial, Helvetica, sans-serif
+}
+
+.cal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.display {
+  display: flex;
+  flex-direction: column;
+  border-width: 1px;
+  height: 100px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(255, 255, 255);
+  grid-column: 1 / -1;
+  padding: 15px;
+  align-items: flex-end;
+  text-align: right;
+  justify-content: space-between;
+  overflow: auto;
+  
+}
+
+.previousValue{
+  color: rgb(239, 211, 53);
+  font-size: 40px;
+}
+
+.currentValue {
+  
+  color: rgb(127, 135, 202);
+  font-size: 30px;
+}
+.buttons {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  grid-template-columns: repeat(4, 75px);
+  grid-template-rows: 160px repeat(5, 65px);
+  padding: 0 15px 15px 25px;
+  border-radius: 20px;
+  background-color: #0303039b;
+ 
+}
+.col-2 {
+  grid-column: span 2;
+  margin-right: 15px;
+  width: auto;
+}
+
+button {
+  border: none;
+  color: rgb(255, 255, 255);
+  display: inline-block;
+  width: 55px;
+  height: 55px;
+
+  font-size: 25px;
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+button:hover {
+  box-shadow: 0px 0.1px 9px 1px rgba(247, 233, 213, 0.7);
+}
+
+button:active {
+  box-shadow: 0px 0.1px 10px 1px rgba(213, 231, 247, 0.5);
+  transform: scale(0.98);
+  font-size: 20px;
+}
+.buttonKey {
+  box-shadow: 0px 0.1px 10px 1px rgba(213, 231, 247, 0.5);
+  transform: scale(0.98);
+  font-size: 20px;
+}
+
+.buttonOperatorB {
+  background-color: #541585;
+}
+.key[value="Backspace"]:active {
+  background-color: #541585;
+}
+.buttonOperatorC {
+  background-color: #084540;
+}
+.key[value="Delete"]:active {
+  background-color: #084540;
+}
+.buttonOperatorD {
+  background-color: #080679;
+}
+.key[value="/"]:active {
+  background-color: #080679;
+}
+
+.buttonOperatorM {
+  background-color: #059fa2;
+}
+.key[value="*"]:active {
+  background-color: #059fa2;
+}
+
+.buttonOperatorR {
+  background-color: #05a124;
+}
+.key[value="-"]:active {
+  background-color: #05a124;
+}
+.buttonOperatorS {
+  background-color: #987914;
+}
+.key[value="+"]:active {
+  background-color: #987914;
+}
+
+button[e] {
+  background-color: rgb(255, 94, 0);
+}
+
