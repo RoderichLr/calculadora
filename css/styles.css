@@ -108,13 +108,13 @@ button:active {
   background-color: #059fa2;
 }
 
-.buttonOperatorR {
+.buttonOperatorS {
   background-color: #05a124;
 }
 .key[value="-"]:active {
   background-color: #05a124;
 }
-.buttonOperatorS {
+.buttonOperatorA {
   background-color: #987914;
 }
 .key[value="+"]:active {

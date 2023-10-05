@@ -8,14 +8,14 @@ class Calculator {
     this.lastCharIsOperator = false;
     this.backspaceInterval = null;
     this.valorOperacion = "0";
-    this.maxDigits = 16; 
+    this.maxDigits = 16;
     this.operatorClasses = {
-      Delete: "buttonOperatorC",
-      Backspace: "buttonOperatorB",
+      "Delete": "buttonOperatorC",
+      "Backspace": "buttonOperatorB",
       "/": "buttonOperatorD",
       "*": "buttonOperatorM",
-      "-": "buttonOperatorR",
-      "+": "buttonOperatorS",
+      "-": "buttonOperatorS",
+      "+": "buttonOperatorA",
     };
 
     document.addEventListener("focusin", this.endFocus.bind(this));
@@ -107,11 +107,14 @@ class Calculator {
   handleBackspace() {
     if (this.keyDown || this.mouseDown) {
       this.backspaceInterval = setInterval(() => {
+        if (this.lastCharIsOperator) {
+          this.lastCharIsOperator = false;
+        }
         this.current.innerHTML = this.current.innerHTML.slice(0, -1);
         if (this.current.innerHTML === "") {
           this.clearCalculator();
         }
-      }, 80);
+      }, 50);
     }
   }
 
@@ -120,26 +123,22 @@ class Calculator {
       if (this.current.innerHTML === "0") {
         this.current.innerHTML = value;
       } else {
-      
         if (this.current.innerHTML.length < this.maxDigits) {
           this.current.innerHTML += value;
-        }
-        else{
-          this.previous.innerHTML = "Digite solo 16 numeros";
-          this.previous.style.fontSize = '25px';
+        } else {
+          this.previous.innerHTML = "Solo 16 digitos";
+          this.previous.style.fontSize = "25px";
         }
       }
       this.valorOperacion = this.current.innerHTML;
       this.lastCharIsOperator = isNaN(value);
     }
   }
-  
 
   evaluateExpression() {
     try {
-      
       const currentValue = eval(this.current.innerHTML);
-      this.previous.style.fontSize = '40px';
+      this.previous.style.fontSize = "40px";
       if (currentValue.toString().length > 10) {
         this.previous.innerHTML = currentValue.toExponential(5);
       } else {
@@ -149,7 +148,6 @@ class Calculator {
       this.lastCharIsOperator = false;
     } catch (error) {
       this.previous.innerHTML = "Error";
-      
     }
   }
 
@@ -157,7 +155,7 @@ class Calculator {
     this.current.innerHTML = "0";
     this.previous.innerHTML = "";
     this.lastCharIsOperator = false;
-    this.previous.style.fontSize = '40px';
+    this.previous.style.fontSize = "40px";
   }
 }
 
