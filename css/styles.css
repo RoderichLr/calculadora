@@ -1,7 +1,7 @@
 body {
   margin: 0;
   background-color: rgb(127, 135, 202);
-  font-family:Arial, Helvetica, sans-serif
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .cal {
@@ -15,25 +15,24 @@ body {
   display: flex;
   flex-direction: column;
   border-width: 1px;
-  height: 100px;
+  height: 85px;
   border-bottom-style: solid;
   border-bottom-color: rgb(255, 255, 255);
-  grid-column: 1 / -1;
-  padding: 15px;
+  grid-column: -1 / 1;
+  padding-bottom: 10px;
+  justify-content: center;
   align-items: flex-end;
   text-align: right;
-  justify-content: space-between;
+
   overflow: auto;
-  
 }
 
-.previousValue{
+.previousValue {
   color: rgb(239, 211, 53);
   font-size: 40px;
 }
 
 .currentValue {
-  
   color: rgb(127, 135, 202);
   font-size: 30px;
 }
@@ -47,7 +46,6 @@ body {
   padding: 0 15px 15px 25px;
   border-radius: 20px;
   background-color: #0303039b;
- 
 }
 .col-2 {
   grid-column: span 2;
@@ -124,4 +122,3 @@ button:active {
 button[e] {
   background-color: rgb(255, 94, 0);
 }
-

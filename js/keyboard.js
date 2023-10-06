@@ -3,22 +3,24 @@ class Calculator {
     // Inicialización de propiedades y eventos
     this.current = document.getElementById("current"); // Pantalla de entrada actual
     this.previous = document.getElementById("previous"); // Pantalla de resultados previos
+    
     this.buttons = Array.from(document.getElementsByTagName("button")); // Lista de botones
     this.endElementFocus = null; // Elemento HTML con foco
     this.keyDown = false; // Indica si se mantiene presionada una tecla
     this.lastCharIsOperator = false; // Indica si el último carácter ingresado es un operador
     this.backspaceInterval = null; // Intervalo para manejar el retroceso continuo
     this.valorOperacion = "0"; // Valor de la operación actual
-    this.maxDigits = 16; // Máximo número de dígitos permitidos
+    this.maxDigits = 14; // Máximo número de dígitos permitidos
+    this.expresionRegular = /[+\-*/]{2,}/;
     this.operatorClasses = {
-      "Delete": "buttonOperatorC",
-      "Backspace": "buttonOperatorB",
+      Delete: "buttonOperatorC",
+      Backspace: "buttonOperatorB",
       "/": "buttonOperatorD",
       "*": "buttonOperatorM",
       "-": "buttonOperatorS",
       "+": "buttonOperatorA",
     }; // Clases CSS para los botones de operadores
-
+    
     // Eventos de escucha
     document.addEventListener("focusin", this.endFocus.bind(this));
     document.addEventListener("keydown", this.handleKeyDown.bind(this));
@@ -102,7 +104,7 @@ class Calculator {
         this.clearCalculator();
         break;
       case "Enter":
-        this.evaluateExpression();
+        this.handleEnter();
         break;
       case "Backspace":
         this.handleBackspace();
@@ -113,37 +115,64 @@ class Calculator {
     }
   }
 
+  handleEnter() {
+    // Mueve el contenido de la pantalla actual a la pantalla previa
+    
+      this.current.innerHTML = this.previous.innerHTML!=="" ?this.previous.innerHTML:this.current.innerHTML;
+      this.previous.innerHTML = "";
+    
+  }
+
+
   // Manejo del retroceso (backspace)
   handleBackspace() {
+    //...........................
+
     if (this.keyDown || this.mouseDown) {
       this.backspaceInterval = setInterval(() => {
-        if (this.lastCharIsOperator) {
-          this.lastCharIsOperator = false;
-        }
         this.current.innerHTML = this.current.innerHTML.slice(0, -1);
+        this.lastCharIsOperator = isNaN(this.current.innerHTML);
+        if (isNaN(this.current.innerHTML)) {
+          this.evaluateExpression();
+        }
+
         if (this.current.innerHTML === "") {
           this.clearCalculator();
         }
-      }, 50);
+      }, 80);
     }
   }
 
   // Manejo de entrada de números y operadores
   handleDefault(value) {
+    if (this.current.innerHTML.length > this.maxDigits) {
+      this.previous.innerHTML = "Solo 15 dígitos";
+      this.previous.style.fontSize = "25px";
+    } else{
     if (!isNaN(value) || !this.lastCharIsOperator) {
       if (this.current.innerHTML === "0") {
         this.current.innerHTML = value;
       } else {
-        if (this.current.innerHTML.length < this.maxDigits) {
-          this.current.innerHTML += value;
-        } else {
-          this.previous.innerHTML = "Solo 16 dígitos";
-          this.previous.style.fontSize = "25px";
-        }
+        
+        this.current.innerHTML += value;
+        
       }
       this.valorOperacion = this.current.innerHTML;
+
+      // Si el valor ingresado es un operador, realiza la evaluación automáticamente
+      if (!isNaN(value) && this.lastCharIsOperator) {
+        if (this.expresionRegular.test(this.current.innerHTML)) {
+          this.evaluateExpression();
+        } else {
+        }
+      }
+
       this.lastCharIsOperator = isNaN(value);
+      if (/[\+\-\*\/]/.test(this.valorOperacion) && !this.lastCharIsOperator) {
+        this.evaluateExpression();
+      }
     }
+  }
   }
 
   // Evaluación de la expresión matemática
@@ -159,7 +188,7 @@ class Calculator {
       this.valorOperacion = this.previous.innerHTML;
       this.lastCharIsOperator = false;
     } catch (error) {
-      this.previous.innerHTML = "Error";
+      this.previous.innerHTML = "";
     }
   }
 
