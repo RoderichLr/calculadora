@@ -31,7 +31,23 @@ body {
   color: rgb(239, 211, 53);
   font-size: 40px;
 }
-
+.textAnimation {
+  font-size: 24px;
+  animation: animar-texto .120s linear ;
+ }
+ 
+ @keyframes animar-texto {
+  0% {
+      transform: translateY(0);
+      opacity: 1;
+     
+  }
+  100% {
+      transform: translateY(-10px);
+      opacity: 0;
+      font-size: 29px;
+  }
+ }
 .currentValue {
   color: rgb(127, 135, 202);
   font-size: 30px;

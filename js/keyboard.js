@@ -114,14 +114,28 @@ class Calculator {
         break;
     }
   }
-
   handleEnter() {
-    // Mueve el contenido de la pantalla actual a la pantalla previa
     
-      this.current.innerHTML = this.previous.innerHTML!=="" ?this.previous.innerHTML:this.current.innerHTML;
+   if(this.previous.innerHTML !== ""){
+    
+    // Realiza la animación en el valor actual
+    this.current.classList.add("textAnimation");
+    
+    // Cuando la animación termine
+     this.current.addEventListener('animationend', () => {
+       // Quita la clase de animación
+       this.current.classList.remove("textAnimation");
+        
+       // Establece el valor actual como el valor anterior
+       if (this.previous.innerHTML !== "") { 
+       this.current.innerHTML = this.previous.innerHTML;
+     }
+      // Establece el valor actual como una cadena vacía
       this.previous.innerHTML = "";
-    
+    });
   }
+}
+
 
 
   // Manejo del retroceso (backspace)
@@ -174,19 +188,17 @@ class Calculator {
 
   
 
-  // Manejo de entrada de números y operadores
-  handleDefault(value) {
-    if (this.current.innerHTML.length > this.maxDigits) {
-      this.previous.innerHTML = "Solo 15 dígitos";
-      this.previous.style.fontSize = "25px";
-    } else{
-    if (!isNaN(value) || !this.lastCharIsOperator) {
+handleDefault(value) {
+  if (this.current.innerHTML.length > this.maxDigits) {
+    this.previous.innerHTML = "Solo 15 dígitos";
+    this.previous.style.fontSize = "25px";
+  } else {
+    // Verifica si el valor ingresado no es un operador
+    if (!isNaN(value) || (!this.lastCharIsOperator && this.current.innerHTML !== "0")) {
       if (this.current.innerHTML === "0") {
         this.current.innerHTML = value;
       } else {
-        
         this.current.innerHTML += value;
-        
       }
       this.valorOperacion = this.current.innerHTML;
 
@@ -194,7 +206,6 @@ class Calculator {
       if (!isNaN(value) && this.lastCharIsOperator) {
         if (this.expresionRegular.test(this.current.innerHTML)) {
           this.evaluateExpression();
-        } else {
         }
       }
 
@@ -204,10 +215,12 @@ class Calculator {
       }
     }
   }
-  }
+}
+
 
   // Evaluación de la expresión matemática
   evaluateExpression() {
+  
     try {
       const currentValue = eval(this.current.innerHTML);
       this.previous.style.fontSize = "40px";
