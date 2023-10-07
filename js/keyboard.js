@@ -126,22 +126,53 @@ class Calculator {
 
   // Manejo del retroceso (backspace)
   handleBackspace() {
-    //...........................
+  let deleteTimer = null; // Variable para el temporizador de borrado
+  const initialDeleteInterval = 400; // Intervalo inicial de borrado (en milisegundos)
+  let currentDeleteInterval = initialDeleteInterval; // Intervalo actual de borrado
+
+  const startDelete = () => {
+    // Esta función se llama cuando se presiona la tecla de retroceso.
+    this.current.innerHTML = this.current.innerHTML.slice(0, -1);
+    this.lastCharIsOperator = isNaN(this.current.innerHTML);
+    if (isNaN(this.current.innerHTML)) {
+      this.evaluateExpression();
+    }
+
+    if (this.current.innerHTML === "") {
+      this.clearCalculator();
+    } else {
+      // Configura un nuevo temporizador para el próximo borrado
+      deleteTimer = setTimeout(startDelete, currentDeleteInterval);
+    }
+  };
+
+  const stopDelete = () => {
+    // Esta función se llama cuando se suelta la tecla de retroceso.
+    if (deleteTimer !== null) {
+      // Cancela el temporizador si la tecla se suelta
+      clearTimeout(deleteTimer);
+      deleteTimer = null;
+    }
+  };
 
     if (this.keyDown || this.mouseDown) {
-      this.backspaceInterval = setInterval(() => {
-        this.current.innerHTML = this.current.innerHTML.slice(0, -1);
-        this.lastCharIsOperator = isNaN(this.current.innerHTML);
-        if (isNaN(this.current.innerHTML)) {
-          this.evaluateExpression();
-        }
+    // Detiene el borrado cuando se suelta la tecla de retroceso.
+      document.addEventListener("keyup", stopDelete);
+      document.addEventListener("mouseup", stopDelete);
+    // Inicia el proceso de borrado cuando se presiona la tecla de retroceso.
+    startDelete();
 
-        if (this.current.innerHTML === "") {
-          this.clearCalculator();
-        }
-      }, 80);
-    }
+    // Reduce el intervalo de borrado después de un cierto tiempo (por ejemplo, 2 segundos).
+    setTimeout(() => {
+      currentDeleteInterval = 50; // Cambia el intervalo a uno más rápido
+    }, 800);
+
+    
   }
+}
+
+
+  
 
   // Manejo de entrada de números y operadores
   handleDefault(value) {
