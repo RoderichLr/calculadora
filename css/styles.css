@@ -33,7 +33,7 @@ body {
 }
 .textAnimation {
   font-size: 24px;
-  animation: animar-texto .120s linear ;
+  animation: animar-texto .220s linear ;
  }
  
  @keyframes animar-texto {
