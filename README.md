@@ -1,13 +1,13 @@
 <!-- Título -->
 <p align="center">
-  <h1 align="center">Calculadora Web</h1>
+  <h1 align="center">Calculadora simple</h1>
   <p align="center">Realiza cálculos matemáticos de forma rápida y sencilla.</p>
 </p>
 
 <!-- Botones de Demo y Contribución -->
 <p align="center">
   <a href="https://roderichlr.github.io/calculadora/" target="_blank">
-    <img src="https://img.shields.io/badge/Demo-Ver%20Demo-brightgreen" alt="Ver Demo">
+    <img src="https://img.shields.io/badge/Dale un vistaso-brightgreen" alt="Dale un vistaso">
   </a>
 
 </p>
@@ -15,18 +15,13 @@
 <!-- Descripción y Características -->
 ## Descripción
 
-La **Calculadora** es una herramienta en línea que te permite realizar cálculos matemáticos básicos de manera eficiente. Su interfaz intuitiva la hace una  calculadora versátil.
+Este proyecto se realizo para practicar, incluye una clase llamada Calculator, la cual fue creada con el propósito de facilitar su posible integración en proyectos futuros y para experimentar con el manejo de clases, el uso del this, y los diferentes métodos que pueden ser implementados en ella.
 
 ## Características Destacadas
 
 - **Operaciones Básicas:** Suma, resta, multiplicación y división.
 - **Entrada de Teclado:** Usa el teclado para ingresar números y operadores.
 - **Límite de Dígitos:** Evita desbordamientos de pantalla.
-
-<!-- Captura de Pantalla -->
-## Captura de Pantalla
-
-![Calculadora](https://github.com/RoderichLr/calculadora/assets/105257545/17b77bc5-3b34-406f-a446-87cdd8e2ddd7)
 
 <!-- Instrucciones de Uso -->
 ## Uso
