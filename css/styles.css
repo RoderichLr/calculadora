@@ -1,0 +1,194 @@
+/* Definición de variables de color */
+:root {
+  --background-color: rgb(42, 48, 107);
+  /* Color de fondo */
+  --border-color: rgb(255, 255, 255);
+  /* Color del borde */
+  --highlight-color: rgb(239, 211, 53);
+  /* Color de resaltado */
+  --text-color: rgb(255, 255, 255);
+  /* Color del texto */
+  --button-bg-color: rgba(255, 255, 255, 0.1);
+  /* Color de fondo para botones */
+  --button-hover-color: rgba(247, 233, 213, 0.7);
+  /* Color de hover para botones */
+  --button-active-color: rgba(213, 231, 247, 0.5);
+  /* Color activo para botones */
+  --operatorB-color: #541585;
+  /* Color para el operador Backspace */
+  --operatorC-color: #084540;
+  /* Color para el operador Delete */
+  --operatorD-color: #080679;
+  /* Color para el operador / */
+  --operatorM-color: #059fa2;
+  /* Color para el operador * */
+  --operatorS-color: #05a124;
+  /* Color para el operador - */
+  --operatorA-color: #987914;
+  /* Color para el operador + */
+  --special-button-color: rgb(255, 94, 0);
+  /* Color especial para un botón */
+}
+
+/* Estilos generales del cuerpo del documento */
+body {
+  margin: 0;
+  background-color: var(--background-color);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Contenedor principal del calculador */
+.cal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Pantalla de visualización del resultado */
+.display {
+  display: flex;
+  flex-direction: column;
+  border-width: 1px;
+  height: 85px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--border-color);
+  grid-column: -1 / 1;
+  padding-bottom: 10px;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: right;
+  overflow: auto;
+}
+
+/* Estilo para el valor previo */
+.previous-value {
+  color: var(--highlight-color);
+  font-size: 40px;
+}
+
+/* Animación de texto */
+.text-animation {
+  font-size: 24px;
+  animation: animar-texto .220s linear;
+}
+
+@keyframes animar-texto {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-10px);
+    opacity: 0;
+    font-size: 29px;
+  }
+}
+
+/* Estilo para el valor actual */
+.current-value {
+  color: var(--background-color);
+  font-size: 30px;
+}
+
+/* Contenedor de botones */
+.buttons {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  grid-template-columns: repeat(4, 75px);
+  grid-template-rows: 160px repeat(5, 65px);
+  padding: 0 15px 15px 25px;
+  border-radius: 20px;
+  background-color: #0303039b;
+}
+
+/* Estilo para botones con ancho de 2 columnas */
+.col-2 {
+  grid-column: span 2;
+  margin-right: 15px;
+  width: auto;
+}
+
+/* Estilos generales para botones */
+button {
+  border: none;
+  color: var(--text-color);
+  display: inline-block;
+  width: 55px;
+  height: 55px;
+  font-size: 25px;
+  border-radius: 50px;
+  background-color: var(--button-bg-color);
+}
+
+/* Efecto hover para botones */
+button:hover {
+  box-shadow: 0px 0.1px 9px 1px var(--button-hover-color);
+}
+
+/* Efecto activo para botones */
+button:active {
+    box-shadow: 0px 0.1px 10px 1px var(--button-active-color);
+    transform: scale(0.98);
+    font-size: 20px;
+  }
+.button-key {
+  box-shadow: 0px 0.1px 10px 1px var(--button-active-color);
+  transform: scale(0.98);
+  font-size: 20px;
+}
+/* Estilos para diferentes tipos de operadores */
+.button-operatorB {
+  background-color: var(--operatorB-color);
+}
+
+.key[value="Backspace"]:active {
+  background-color: var(--operatorB-color);
+}
+
+.button-operatorC {
+  background-color: var(--operatorC-color);
+}
+
+.key[value="Delete"]:active {
+  background-color: var(--operatorC-color);
+}
+
+.button-operatorD {
+  background-color: var(--operatorD-color);
+}
+
+.key[value="/"]:active {
+  background-color: var(--operatorD-color);
+}
+
+.button-operatorM {
+  background-color: var(--operatorM-color);
+}
+
+.key[value="*"]:active {
+  background-color: var(--operatorM-color);
+}
+
+.button-operatorS {
+  background-color: var(--operatorS-color);
+}
+
+.key[value="-"]:active {
+  background-color: var(--operatorS-color);
+}
+
+.button-operatorA {
+  background-color: var(--operatorA-color);
+}
+
+.key[value="+"]:active {
+  background-color: var(--operatorA-color);
+}
+
+button[e] {
+  background-color: var(--special-button-color);
+}

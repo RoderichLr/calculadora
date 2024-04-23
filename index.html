@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="shortcut icon" href="resource/img/calculadora.png" type="image/x-icon" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="js/keyboard.js" defer></script>
+  </head>
+  <body>
+    <form name="calculator" class="cal">
+      <div class="buttons">
+        <div class="display">
+          <span class="current-value" id="current">0</span>
+          <span class="previous-value" id="previous"></span>
+        </div>
+        <button type="button" class="key col-2" value="Delete" h>C</button>
+        <button type="button" class="key" value="Backspace">←</button>
+        <button type="button" class="key" value="/" d>/</button>
+        <button type="button" class="key" value="7">7</button>
+        <button type="button" class="key" value="8">8</button>
+        <button type="button" class="key" value="9">9</button>
+        <button type="button" class="key" value="*" m>*</button>
+        <button type="button" class="key" value="4">4</button>
+        <button type="button" class="key" value="5">5</button>
+        <button type="button" class="key" value="6">6</button>
+        <button type="button" class="key" value="-" r>-</button>
+        <button type="button" class="key" value="1">1</button>
+        <button type="button" class="key" value="2">2</button>
+        <button type="button" class="key" value="3">3</button>
+        <button type="button" class="key" value="+">+</button>
+        <div class="empty-area"></div>
+        <button type="button" class="key" value=".">.</button>
+        <button type="button" class="key" value="0">0</button>
+        <button type="button" class="key" value="Enter" e>=</button>
+      </div>
+    </form>
+  </body>
+</html>
